@@ -5,15 +5,10 @@ import axios from 'axios';
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
 
-  // Fetch tasks from the backend
   useEffect(() => {
     const fetchTasks = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/tasks');
-        setTasks(response.data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
+      const response = await axios.get('http://localhost:5000/api/tasks');
+      setTasks(response.data);
     };
 
     fetchTasks();
@@ -22,9 +17,9 @@ const TaskList = () => {
   return (
     <div>
       <h1>Task List</h1>
-      <Link to="/new">Add Task</Link>
+      <Link to="/new">Add New Task</Link>
       <ul>
-        {tasks.map(task => (
+        {tasks.map((task) => (
           <li key={task._id}>
             <Link to={`/task/${task._id}`}>{task.title}</Link>
           </li>

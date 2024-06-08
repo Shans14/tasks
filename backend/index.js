@@ -49,6 +49,21 @@ app.get('/api/tasks', async (req, res) => {
   }
 });
 
+app.get('/api/tasks/:id', async (req, res) => {
+  try {
+    console.log(`Fetching task with ID: ${req.params.id}`);
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    console.log('Fetched task:', task);
+    res.json(task);
+  } catch (error) {
+    console.error('Error fetching task:', error);
+    res.status(400).json({ error: error.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
