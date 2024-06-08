@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TaskList from './components/TaskList';
 import TaskDetail from './components/TaskDetail';
 import AddTask from './components/AddTask';
+import './App.css';
+
 
 const App = () => {
   return (
