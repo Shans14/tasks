@@ -29,10 +29,9 @@ const TaskForm = () => {
         navigate(`/task/${id}`);
       } else {
         await axios.post('http://localhost:5000/api/tasks', task);
-        navigate('/'); // Redirect to the task list
+        navigate('/'); 
       }
     } catch (error) {
-      console.error('Error saving task:', error);
       alert('Failed to save task. Please try again.');
     }
   };

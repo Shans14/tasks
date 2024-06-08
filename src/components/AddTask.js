@@ -22,7 +22,7 @@ const AddTask = () => {
 
   return (
     <div>
-      <h1>Add Task</h1>
+      <h1>Add a Task to Do</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Title:</label>

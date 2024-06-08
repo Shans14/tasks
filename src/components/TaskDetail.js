@@ -24,7 +24,7 @@ const TaskDetail = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading task...</div>;
   }
 
   if (!task) {
@@ -35,7 +35,7 @@ const TaskDetail = () => {
     <div>
       <h1>{task.title}</h1>
       <p>{task.description}</p>
-      <p>Due Date: {new Date(task.dueDate).toLocaleDateString()}</p>
+      <p>Due Date of task: {new Date(task.dueDate).toLocaleDateString()}</p>
     </div>
   );
 };
