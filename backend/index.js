@@ -22,6 +22,7 @@ const taskSchema = new mongoose.Schema({
   title: String,
   description: String,
   dueDate: Date,
+  completed: { type: Boolean, default: false },
 });
 
 const Task = mongoose.model('Task', taskSchema);
@@ -30,10 +31,8 @@ app.post('/api/tasks', async (req, res) => {
   try {
     const task = new Task(req.body);
     await task.save();
-    console.log('Saved task:', task);
     res.json(task);
   } catch (error) {
-    console.error('Error saving task:', error);
     res.status(400).json({ error: error.message });
   }
 });
@@ -41,25 +40,57 @@ app.post('/api/tasks', async (req, res) => {
 app.get('/api/tasks', async (req, res) => {
   try {
     const tasks = await Task.find();
-    console.log('Fetched tasks:', tasks);
     res.json(tasks);
   } catch (error) {
-    console.error('Error fetching tasks:', error);
     res.status(400).json({ error: error.message });
   }
 });
 
 app.get('/api/tasks/:id', async (req, res) => {
   try {
-    console.log(`Fetching task with ID: ${req.params.id}`);
     const task = await Task.findById(req.params.id);
     if (!task) {
       return res.status(404).json({ error: 'Task not found' });
     }
-    console.log('Fetched task:', task);
     res.json(task);
   } catch (error) {
-    console.error('Error fetching task:', error);
+    res.status(400).json({ error: error.message });
+  }
+});
+app.put('/api/tasks/:id', async (req, res) => {
+  try {
+    const { completed } = req.body; // Assuming req.body has { completed: true/false }
+    const task = await Task.findByIdAndUpdate(req.params.id, { completed }, { new: true });
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json(task);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.delete('/api/tasks/:id', async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json({ message: 'Task deleted' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// New endpoint to update task status
+app.put('/api/tasks/:id', async (req, res) => {
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json(task);
+  } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
