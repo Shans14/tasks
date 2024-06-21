@@ -82,3 +82,51 @@ a:hover {
   text-align: center;
   font-size: 18px;
 }
+.task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-item a {
+  flex: 1;
+  text-decoration: none;
+  color: #000;
+}
+
+.delete-icon {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item a {
+  flex: 1;
+  text-decoration: none;
+  color: #000;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.task-item input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.delete-icon {
+  margin-left: 10px;
+}
+

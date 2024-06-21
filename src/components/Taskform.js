@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import '../App.css'; 
+import '../App.css';
 
 const TaskForm = () => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const TaskForm = () => {
         navigate(`/task/${id}`);
       } else {
         await axios.post('http://localhost:5000/api/tasks', task);
-        navigate('/'); 
+        navigate('/');
       }
     } catch (error) {
       alert('Failed to save task. Please try again.');
