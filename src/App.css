@@ -120,6 +120,7 @@ a:hover {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  margin-top: auto;
 }
 
 .task-item input[type="checkbox"] {
