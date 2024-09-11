@@ -127,7 +127,7 @@ a:hover {
   margin-right: 8px;
 }
 
-.delete-icon {
+.delete-icon input{
   margin-left: 10px;
 }
 
